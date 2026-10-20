@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A Special Thadingyut Wish for Ma Ma 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --night: #100d27;
+  --purple: #34265a;
+  --pink: #ffd6e7;
+  --gold: #ffe5a5;
+  --white: #fffafc;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--night);
+  color: var(--white);
+  font-family: "Noto Sans Myanmar", sans-serif;
+}
+
+body { overflow: hidden; }
+
+button { font-family: inherit; cursor: pointer; }
+
+#sky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glow {
+  position: fixed;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: .24;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow.one {
+  background: #b98aff;
+  top: -100px;
+  left: -90px;
+}
+
+.glow.two {
+  background: #ff92c8;
+  right: -100px;
+  bottom: -100px;
+}
+
+.page {
+  display: none;
+  position: relative;
+  z-index: 1;
+  height: 100dvh;
+  width: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding: 28px 20px 125px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  animation: fadeIn .7s ease;
+}
+
+.page.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+h1, h2, h3, p { overflow-wrap: anywhere; }
+
+h1 {
+  font-size: clamp(25px, 7vw, 38px);
+  line-height: 1.65;
+  color: var(--gold);
+  text-shadow: 0 0 20px #ffca8a55;
+}
+
+h2 {
+  font-size: clamp(21px, 5.8vw, 29px);
+  line-height: 1.7;
+  color: var(--pink);
+}
+
+p {
+  font-size: 15px;
+  line-height: 2;
+}
+
+.small {
+  font-size: 13px;
+  opacity: .85;
+  line-height: 1.9;
+}
+
+button.main {
+  border: 1px solid #ffffff60;
+  background: linear-gradient(135deg, #f7d9eb, #e7d5ff);
+  color: #332348;
+  padding: 13px 24px;
+  border-radius: 40px;
+  font-size: 15px;
+  margin: 8px;
+  box-shadow: 0 5px 25px #e5b7ff22;
+  transition: transform .2s, box-shadow .2s;
+}
+
+button.main:active { transform: scale(.96); }
+
+button.secondary {
+  background: #ffffff10;
+  color: white;
+  border: 1px solid #ffffff55;
+  padding: 11px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  margin: 6px;
+}
+
+.card {
+  width: min(100%, 540px);
+  padding: 25px 20px;
+  border: 1px solid #ffffff30;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #ffffff12, #ffffff05);
+  box-shadow: 0 12px 45px #00000022;
+  backdrop-filter: blur(10px);
+}
+
+.emoji {
+  font-size: 55px;
+  margin: 12px;
+  filter: drop-shadow(0 0 15px #ffd6e766);
+}
+
+.envelope {
+  width: 190px;
+  height: 130px;
+  margin: 22px auto;
+  position: relative;
+  background: #f4cfe1;
+  border-radius: 8px;
+  box-shadow: 0 0 35px #ffcbe955;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 95px solid transparent;
+  border-right: 95px solid transparent;
+  border-top: 72px solid #dca8ca;
+  transform-origin: top;
+}
+
+.envelope:after {
+  content: "🤍";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48px;
+  font-size: 35px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.video-frame {
+  width: min(100%, 440px);
+  margin: 15px auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #080611;
+  border: 1px solid #ffffff35;
+  box-shadow: 0 8px 30px #00000044;
+  position: relative;
+}
+
+.tiktok-frame {
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
+  max-height: calc(100dvh - 220px);
+  flex-shrink: 0;
+}
+
+.tiktok-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+}
+
+.song-frame {
+  width: min(100%, 560px);
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+}
+
+.song-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Vinyl record */
+.record {
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  margin: 12px auto;
+  background:
+    radial-gradient(circle, #d8bfdc 0 8%, #171321 9% 18%,
+    #4b4258 19% 20%, #171321 21% 35%, #353044 36% 37%,
+    #171321 38% 53%, #383044 54% 55%, #171321 56% 70%,
+    #2e2639 71% 72%, #171321 73%);
+  border: 4px solid #b7a4c8;
+  box-shadow: 0 0 25px #d9b5ff44;
+  transform: rotate(0deg);
+  will-change: transform;
+}
+
+.record.spinning {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.choice {
+  width: 100%;
+  padding: 14px 12px;
+  margin: 7px 0;
+  border-radius: 15px;
+  border: 1px solid #ffffff35;
+  color: white;
+  background: #ffffff0d;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.choice.selected {
+  border-color: #ffdbad;
+  background: #ffe0ee20;
+}
+
+.stars-button {
+  font-size: 38px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  animation: float 3s ease-in-out infinite;
+}
+
+.letter-page {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  text-align: left !important;
+  overflow-y: auto !important;
+  padding: 25px 16px 130px !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+.note {
+  width: min(100%, 600px);
+  flex-shrink: 0;
+  margin: 0 auto;
+  padding: 23px 18px;
+  background: linear-gradient(145deg, #fffaf4, #fff0f6);
+  color: #4b3449;
+  border-radius: 20px;
+  border: 1px solid #ffe2ed;
+  box-shadow: 0 10px 45px #00000030;
+  line-height: 2.05;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+
+.note h2, .note h3 {
+  color: #8d567a;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.note p { line-height: 2.05; font-size: 14px; }
+
+.note .section-title {
+  color: #a35f86;
+  font-weight: 700;
+}
+
+.footer {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(0deg, #100d27 75%, #100d2700);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress {
+  width: min(100%, 360px);
+  height: 4px;
+  background: #ffffff20;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-inner {
+  height: 100%;
+  width: 6.66%;
+  background: linear-gradient(90deg, #ffcee5, #ffe5a5);
+  transition: width .3s;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav button {
+  border: 1px solid #ffffff40;
+  color: white;
+  background: #ffffff12;
+  border-radius: 30px;
+  padding: 9px 18px;
+  font-size: 13px;
+}
+
+.nav button:disabled { opacity: .35; }
+
+#pageCount {
+  font-size: 12px;
+  opacity: .8;
+  min-width: 55px;
+}
+
+.heart {
+  position: fixed;
+  z-index: 20;
+  pointer-events: none;
+  animation: rise 3s ease-out forwards;
+}
+
+@keyframes rise {
+  from { transform: translateY(0) scale(.8); opacity: 1; }
+  to { transform: translateY(-220px) scale(1.5); opacity: 0; }
+}
+
+#p4 {
+  justify-content: flex-start;
+  padding-top: 14px;
+}
+
+#p4 h2 {
+  font-size: clamp(18px, 5vw, 25px);
+  margin: 6px 0;
+}
+
+#p4 .video-frame { margin: 8px auto; }
+
+#p4 .card {
+  padding: 12px 15px;
+  margin: 6px auto;
+}
+
+#p4 .card p {
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 4px 0;
+}
+
+/* Page 10 */
+#p10 {
+  justify-content: flex-start;
+  padding-top: 14px;
+}
+
+#p10 h2 {
+  font-size: clamp(19px, 5vw, 26px);
+  margin: 6px 0;
+}
+
+#p10 .record { margin: 8px auto 12px; }
+
+#p10 .video-frame { margin: 8px auto; }
+
+#p10 .small { margin: 5px 0; }
+
+@media (max-width: 380px) {
+  .page { padding-left: 14px; padding-right: 14px; }
+  .card { padding: 20px 15px; }
+  .note { padding: 18px 14px; }
+  .tiktok-frame { width: min(100%, 330px); }
+  #p10 .record { width: 108px; height: 108px; }
+}
+</style>
+</head>
+
+<body>
+<canvas id="sky"></canvas>
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="p1">
+  <div class="emoji">🌙✨</div>
+  <h1>A Little Thadingyut Surprise</h1>
+  <p>မမအတွက် အမှတ်တရလေးတစ်ခု ပြင်ဆင်ထားတယ်နော် 🤍</p>
+  <p class="small">ညလေးတစ်ညရဲ့ ကြယ်ရောင်အောက်မှာ…</p>
+  <button class="main" onclick="showPage(2)">စလိုက်ရအောင် 🤍</button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+  <h2>မမ… ဒီအထဲမှာ 💌</h2>
+  <div class="envelope" onclick="showPage(3)"></div>
+  <p>စာအိတ်လေးကို နှိပ်ပြီး ဖွင့်ကြည့်ပါနော်</p>
+  <button class="main" onclick="showPage(3)">Open my little surprise ✨</button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+  <div class="emoji">🪷🎆</div>
+  <h1>Happy Thadingyut, Ma Ma 🤍</h1>
+  <div class="card">
+    <p>ဒီသီတင်းကျွတ်အချိန်လေးမှာ မမအတွက် နွေးထွေးတဲ့ဆုတောင်းလေးတွေ၊ အမှတ်တရလေးတွေနဲ့ အံ့ဩစရာလေးတစ်ခု ပြင်ဆင်ထားတယ်နော်။</p>
+  </div>
+  <button class="main" onclick="showPage(4)">ဆက်ကြည့်မယ် 🌷</button>
+</section>
+
+<!-- PAGE 4: TIKTOK VIDEO -->
+<section class="page" id="p4">
+  <h2>မမအတွက် သီချင်းလေးနဲ့ အမှတ်တရ 🤍</h2>
+
+  <div class="video-frame tiktok-frame">
+    <iframe
+      src="https://www.tiktok.com/player/v1/7640848495980612884?music_info=1&description=1&controls=1"
+      title="TikTok video for Ma Ma"
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="card">
+    <p>မမရေ… ဒီသီချင်းလေးကို မမအတွက် ဖြူက ရွေးထားတာနော်။ မမက ဖြူ့ဘဝထဲမှာ အရမ်းတန်ဖိုးထားရတဲ့သူလေးပါ။ မမနဲ့အတူရှိခဲ့တဲ့ အချိန်လေးတွေက ဖြူ့အတွက် ပျော်ရွှင်စရာအမှတ်တရလေးတွေ ဖြစ်ခဲ့တယ်။ မမ အမြဲပျော်ရွှင်ပြီး စိတ်ချမ်းသာနေပါစေနော်။ ဖြူက မမအတွက် ကောင်းခြင်းလေးတွေ အမြဲဆုတောင်းပေးနေတယ်။ 🤍🪷</p>
+  </div>
+
+  <button class="main" onclick="showPage(5)">နောက်တစ်မျက်နှာသို့ 🤍</button>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="p5">
+  <div class="emoji">🌷</div>
+  <h2>ဆုတောင်းလေးတွေ စကြမယ်နော်</h2>
+  <div class="card">
+    <p>မမအတွက် ဆုတောင်းပေးချင်တဲ့ အရာလေးတွေ အများကြီးရှိတယ်။ တစ်ခုချင်းစီကို ကြယ်လေးတွေလို တောက်ပစွာ ပေးချင်တယ်။</p>
+  </div>
+  <button class="main" onclick="showPage(6)">ကြယ်လေးတွေကို တွေ့ကြည့်မယ် ✨</button>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page" id="p6">
+  <h2>မမအတွက် ကြယ်လေးတစ်ပွင့် ရွေးပါ 🌟</h2>
+  <p>ကြယ်လေးကို နှိပ်လိုက်တိုင်း ဆုတောင်းလေးတစ်ခု ပေါ်လာမယ်နော်။</p>
+  <div>
+    <button class="stars-button" onclick="starWish(0)">⭐</button>
+    <button class="stars-button" onclick="starWish(1)">✨</button>
+    <button class="stars-button" onclick="starWish(2)">🌟</button>
+  </div>
+  <div class="card">
+    <p id="starWishText">မမအတွက် ကြယ်လေးတစ်ပွင့်ကို နှိပ်ကြည့်ပါနော် 🤍</p>
+  </div>
+  <button class="main" onclick="showPage(7)">ဆက်သွားမယ် 🪷</button>
+</section>
+
+<!-- PAGE 7 -->
+<section class="page" id="p7">
+  <h2>မမအတွက် ဘယ်ဆုတောင်းလေးကို အရင်ပေးရမလဲ 🤍</h2>
+  <p class="small">တစ်ခုရွေးကြည့်နော်</p>
+  <div class="card">
+    <button class="choice" onclick="selectWish(this,'မမ အမြဲကျန်းမာပြီး ပျော်ရွှင်ပါစေ။ 🌷')">🌷 ကျန်းမာပျော်ရွှင်ခြင်း</button>
+    <button class="choice" onclick="selectWish(this,'မမကြိုးစားသမျှ အောင်မြင်မှုတွေနဲ့ ပြည့်စုံပါစေ။ 🌟')">🌟 အောင်မြင်ခြင်း</button>
+    <button class="choice" onclick="selectWish(this,'မမရဲ့ စိတ်ကလေး အမြဲအေးချမ်းပါစေ။ 🌙')">🌙 စိတ်အေးချမ်းခြင်း</button>
+    <p id="selectedWish">မမရွေးထားတဲ့ ဆုတောင်းလေး ဒီမှာပေါ်လာမယ်နော်။</p>
+  </div>
+  <button class="main" onclick="showPage(8)">ဆက်ကြည့်မယ် 💗</button>
+</section>
+
+<!-- PAGE 8 -->
+<section class="page" id="p8">
+  <div class="emoji">💫</div>
+  <h2>မမရဲ့ နေ့ရက်တိုင်း လှပပါစေ</h2>
+  <div class="card">
+    <p>မမအတွက် ပျော်ရွှင်မှုလေးတွေက နေ့တိုင်း ရောက်လာပါစေ။ မမပြုံးတဲ့အခါတိုင်း အဲဒီအပြုံးလေးက စိတ်ထဲက ပျော်ရွှင်မှုအစစ်အမှန် ဖြစ်ပါစေ။</p>
+  </div>
+  <button class="main" onclick="showPage(9)">နောက်ထပ် Surprise လေး 🎁</button>
+</section>
+
+<!-- PAGE 9 -->
+<section class="page" id="p9">
+  <div class="emoji">🎁💗</div>
+  <h1>A Little Surprise for Ma Ma</h1>
+  <div class="card">
+    <p>မမရေ… ဒီစာမျက်နှာလေးထိ ရောက်လာပေးလို့ ကျေးဇူးတင်ပါတယ်နော်။ နောက်ထပ် အမှတ်တရလေးတစ်ခု ရှိသေးတယ်။</p>
+  </div>
+  <button class="main" onclick="burstHearts();showPage(10)">ဖွင့်ကြည့်မယ် 🤍</button>
+</section>
+
+<!-- PAGE 10: MUSIC VIDEO + VINYL -->
+<section class="page" id="p10">
+  <h2>ဒီသီချင်းလေးကို မမအတွက် 🎶</h2>
+  <p class="small">သီချင်းဗီဒီယိုကို ဒီစာမျက်နှာထဲမှာပဲ ကြည့်လို့ရတယ်နော် 🤍</p>
+
+  <div class="record" id="record"></div>
+
+  <div class="video-frame song-frame">
+    <div id="youtubePlayer" style="width:100%;height:100%;"></div>
+  </div>
+
+  <p class="small">သီချင်းဖွင့်ထားတဲ့အချိန် ဓာတ်ပြားလေးလည်း လည်နေမယ်နော် 🤍</p>
+
+  <button class="secondary" id="recordButton" onclick="toggleRecord()">ဓာတ်ပြားလေး လှည့်/ရပ်</button>
+  <button class="main" onclick="showPage(11)">ဆက်သွားမယ် 🌙</button>
+</section>
+
+<!-- PAGE 11 -->
+<section class="page" id="p11">
+  <h2>ကြယ်ရောင်လေးတွေအောက်မှာ 🌌</h2>
+  <div class="emoji">🌟✨🌙</div>
+  <div class="card">
+    <p>မမဘဝထဲမှာ ကြယ်လေးတွေလို တောက်ပတဲ့ အခွင့်အရေးကောင်းတွေ၊ လူကောင်းတွေ၊ ပျော်ရွှင်စရာအမှတ်တရတွေ အများကြီး ရှိလာပါစေနော်။</p>
+  </div>
+  <button class="main" onclick="showPage(12)">ဆုတောင်းစာလေးဆီ သွားမယ် 💌</button>
+</section>
+
+<!-- PAGE 12 -->
+<section class="page" id="p12">
+  <div class="emoji">💌🪷</div>
+  <h1>မမအတွက် ရေးထားတဲ့စာလေး</h1>
+  <div class="card">
+    <p>ဒီစာလေးက မမအတွက် စိတ်ရင်းနဲ့ ဆုတောင်းပေးထားတဲ့ စကားလေးတွေပါ။ အေးအေးဆေးဆေး ဖတ်ကြည့်နော်။</p>
+  </div>
+  <button class="main" onclick="showPage(13)">စာလေးကို ဖွင့်ကြည့်မယ် 🤍</button>
+</section>
+
+<!-- PAGE 13 -->
+<section class="page" id="p13">
+  <div class="emoji">🪷</div>
+  <h2>A Special Thadingyut Wish for Ma Ma 🤍</h2>
+  <p>With Lots of Warm Wishes ✨</p>
+  <div class="card">
+    <p>မမအတွက် ဆုတောင်းထားတဲ့ စာလေးကို အဆုံးအထိ ဖတ်ကြည့်ပေးနော်။</p>
+  </div>
+  <button class="main" onclick="showPage(14)">ဆုတောင်းစာကို ဖတ်မယ် 🤍</button>
+</section>
+
+<!-- PAGE 14: FULL WISH LETTER -->
+<section class="page letter-page" id="p14">
+  <article class="note">
+    <h2>🪷 A Special Thadingyut Wish for Ma Ma 🤍</h2>
+    <h3>With Lots of Warm Wishes ✨</h3>
+
+    <p><strong>သီတင်းကျွတ်အခါသမယလေးမှာ မမရေ… 🤍🎆</strong></p>
+
+    <p>ဒီလို အလင်းရောင်လေးတွေ လှပနေတဲ့ သီတင်းကျွတ်ညလေးမှာ မမအတွက် ဆုတောင်းစကားလေးတွေ အများကြီး ပြောပေးချင်တယ်နော်။ တစ်နှစ်မှာ သီတင်းကျွတ်ဆိုတဲ့ အချိန်လေးတစ်ခါ ရောက်လာသလို မမရဲ့ဘဝထဲကိုလည်း ကောင်းခြင်းတွေ၊ ပျော်ရွှင်ခြင်းတွေနဲ့ လှပတဲ့အမှတ်တရတွေ အကြိမ်ကြိမ် ရောက်လာပါစေလို့ ဆုတောင်းပေးပါတယ်။ 🪷</p>
+
+    <p>မမရဲ့ နေ့ရက်တိုင်းမှာ အပြုံးလေးတွေ အမြဲရှိနေပါစေနော်။ မမပြုံးတဲ့အခါ စိတ်ထဲမှာလည်း တကယ်ပျော်ရွှင်နေနိုင်ပါစေ။ အပြင်ပန်းမှာပဲ ပြုံးနေရပြီး အတွင်းစိတ်မှာ ပင်ပန်းနေရတဲ့နေ့တွေ နည်းပါးပါစေ။ မမရဲ့အပြုံးလေးတွေက ပျော်ရွှင်မှုအစစ်အမှန်တွေနဲ့ ပြည့်နေပါစေ။ 🤍</p>
+
+    <p class="section-title">🌷 မမ ကျန်းမာပျော်ရွှင်ပါစေ။</p>
+
+    <p>မမရဲ့ကျန်းမာရေးလေးလည်း အမြဲကောင်းမွန်နေပါစေ။ အိပ်ရေးဝဝအိပ်နိုင်ပါစေ၊ အစားအစာလည်း မှန်မှန်စားနိုင်ပါစေ၊ ကိုယ့်ကိုယ်ကို ဂရုစိုက်ဖို့လည်း မမ မမေ့ပါစေနဲ့နော်။ စာတွေလုပ်ရင်း၊ အလုပ်တွေလုပ်ရင်း ပင်ပန်းလာတဲ့အခါ ကိုယ့်ကိုယ်ကို အနားပေးဖို့လည်း မမ မှတ်မိနေပါစေ။ မမရဲ့ကိုယ်ရော စိတ်ရော ကျန်းမာပြီး အေးချမ်းနေပါစေ။ 🫶</p>
+
+    <p class="section-title">✨ မမ ကြိုးစားသမျှ အဆင်ပြေပါစေ။</p>
+
+    <p>မမရဲ့ ပညာရေးမှာလည်း အဆင်ပြေပါစေ။ စာလေ့လာတဲ့အခါ နားလည်လွယ်ပါစေ၊ ကြိုးစားထားသမျှလည်း ရလဒ်ကောင်းတွေ ပြန်ရပါစေ။ တစ်ခါတလေ ခက်ခဲတဲ့အရာတွေ ကြုံလာရင်တောင် မမကိုယ်တိုင်ကို ယုံကြည်မှု မပျောက်သွားပါစေနဲ့။ မမရဲ့ရည်မှန်းချက်လေးတွေဆီကို တစ်လှမ်းချင်း နီးကပ်သွားနိုင်ပါစေ။ မမကြိုးစားခဲ့တဲ့အချိန်တွေ အလဟဿမဖြစ်ဘဲ တစ်နေ့မှာ ကိုယ်တိုင်ဂုဏ်ယူနိုင်တဲ့ အောင်မြင်မှုလေးတွေ ရရှိပါစေနော်။ 🌟</p>
+
+    <p class="section-title">🌼 မမရဲ့ ဆန္ဒလေးတွေ ပြည့်ဝပါစေ။</p>
+
+    <p>မမစိတ်ထဲမှာ မျှော်လင့်ထားတဲ့အရာလေးတွေ၊ တိတ်တိတ်လေး ဆုတောင်းထားတဲ့အရာလေးတွေ၊ တစ်နေ့နေ့မှာ ဖြစ်လာစေချင်တဲ့ အိပ်မက်လေးတွေ တစ်ခုချင်းစီ ပြည့်ဝလာပါစေ။ ချက်ချင်းမဖြစ်လာသေးရင်တောင် စိတ်ဓာတ်မကျဘဲ ဆက်လက်ကြိုးစားနိုင်ပါစေ။ မမမျှော်လင့်ထားတာထက်တောင် ပိုကောင်းတဲ့အရာလေးတွေ မမဘဝထဲကို ရောက်လာပါစေ။ မမအတွက် သင့်တော်တဲ့အခွင့်အရေးကောင်းတွေ၊ လူကောင်းတွေနဲ့ အတွေ့အကြုံကောင်းတွေ အများကြီး ကြုံတွေ့ရပါစေ။ 💫</p>
+
+    <p class="section-title">🌙 မမရဲ့ စိတ်ပင်ပန်းမှုတွေ လျော့နည်းပါစေ။</p>
+
+    <p>ဘယ်သူမှမသိတဲ့ မမရဲ့ပင်ပန်းမှုတွေ၊ စိတ်ထဲမှာ တိတ်တိတ်လေး ခံစားနေရတဲ့အရာတွေ ရှိခဲ့ရင်လည်း အဲဒီအရာတွေကို ဖြည်းဖြည်းချင်း ကျော်ဖြတ်နိုင်ပါစေနော်။ အရာအားလုံးကို တစ်ယောက်တည်း အမြဲတမ်း သည်းခံနေရစရာ မလိုဘူးဆိုတာလည်း မမ သိထားပါစေ။ ပင်ပန်းတဲ့အခါ အနားယူနိုင်ပါစေ၊ ဝမ်းနည်းတဲ့အခါ ကိုယ့်ခံစားချက်ကို နားလည်ပေးနိုင်ပါစေ။ မမရဲ့စိတ်ကလေး အေးချမ်းပြီး ကိုယ့်ကိုယ်ကို နူးနူးညံ့ညံ့ ဆက်ဆံတတ်ပါစေ။ 🤍</p>
+
+    <p class="section-title">🕊️ မမအနားမှာ လူကောင်းတွေ ရှိနေပါစေ။</p>
+
+    <p>မမကို နားလည်ပေးတဲ့သူတွေ၊ မမရဲ့ခံစားချက်တွေကို တန်ဖိုးထားပေးတဲ့သူတွေ၊ မမပင်ပန်းနေတဲ့အခါ အားပေးစကားလေး ပြောပေးမယ့်သူတွေ အနားမှာ ရှိနေပါစေ။ မမကို ပျော်ရွှင်စေတဲ့ အမှတ်တရလေးတွေ အများကြီး ပိုင်ဆိုင်နိုင်ပါစေ။ မမရဲ့ဘဝထဲကို ရောက်လာတဲ့ ကောင်းမွန်တဲ့ဆက်ဆံရေးတိုင်းကလည်း မမအတွက် နွေးထွေးမှုနဲ့ အေးချမ်းမှုတွေ ယူဆောင်လာပေးပါစေ။ 🌷</p>
+
+    <p class="section-title">🎐 မမရဲ့ အနာဂတ်လေး လှပပါစေ။</p>
+
+    <p>ဒီနေ့ မမကြိုးစားနေတဲ့အရာလေးတွေက နောင်တစ်ချိန်မှာ မမအတွက် ဂုဏ်ယူစရာအမှတ်တရတွေ ဖြစ်လာပါစေ။ မမကိုယ်တိုင် ရွေးချယ်ထားတဲ့လမ်းပေါ်မှာ ယုံကြည်မှုရှိရှိ လျှောက်လှမ်းနိုင်ပါစေ။ အခက်အခဲတွေ ကြုံရတဲ့အခါ ဖြေရှင်းနိုင်မယ့်နည်းလမ်းတွေ ရှာတွေ့ပါစေ။ မမရဲ့ဘဝမှာ ဝမ်းသာရတဲ့သတင်းတွေ၊ အောင်မြင်မှုလေးတွေ၊ ရင်ထဲကနေ တကယ်ပျော်ရွှင်ရတဲ့အချိန်လေးတွေ အများကြီး ရှိလာပါစေနော်။ 🌟</p>
+
+    <p class="section-title">🪷 ဒီသီတင်းကျွတ်ညလေးမှာ အထူးဆုတောင်းပေးချင်တာက…</p>
+
+    <p>မမ ဘယ်နေရာမှာပဲ ရှိနေပါစေ၊ ဘာတွေပဲ လုပ်ဆောင်နေပါစေ၊ မမရဲ့စိတ်ထဲမှာ အေးချမ်းမှုလေး ရှိနေပါစေ။ မမရဲ့ဘဝမှာ ကောင်းတဲ့အရာတွေကို လက်ခံရရှိနိုင်သလို မကောင်းတဲ့အချိန်တွေကိုလည်း ခွန်အားရှိရှိ ဖြတ်သန်းနိုင်ပါစေ။ မမရဲ့ကြိုးစားမှုတွေကို တန်ဖိုးထားတတ်ပါစေ။ ကိုယ့်ရဲ့တိုးတက်မှုလေးတွေကိုလည်း အသိအမှတ်ပြုပြီး ကိုယ့်ကိုယ်ကို ဂုဏ်ယူတတ်ပါစေနော်။ 🤍</p>
+
+    <p>သီတင်းကျွတ်မီးရောင်လေးတွေလို မမရဲ့ဘဝလေးလည်း တောက်ပနေပါစေ။ လပြည့်ညရဲ့ အေးချမ်းမှုလေးလို မမရဲ့စိတ်ကလေးလည်း ငြိမ်းချမ်းနေပါစေ။ ကြယ်လေးတွေ များပြားသလို မမရဲ့ဘဝထဲမှာ ပျော်ရွှင်စရာအကြောင်းအရင်းလေးတွေလည်း များပြားလာပါစေ။ ✨🌙</p>
+
+    <p>ဒီသီတင်းကျွတ်ကနေစပြီး မမအတွက် ကောင်းခြင်းတွေ တစ်ခုပြီးတစ်ခု ရောက်လာပါစေ။ မမရဲ့အိပ်မက်လေးတွေ အကောင်အထည်ဖော်နိုင်ပါစေ။ မမရဲ့မျက်နှာပေါ်မှာ အပြုံးလေးတွေ ပိုများလာပါစေ။ မမကိုယ်တိုင်လည်း ကိုယ့်ဘဝလေးကို ပျော်ရွှင်စွာ ဖြတ်သန်းနိုင်ပါစေနော်။</p>
+
+    <h3>Happy Thadingyut, Ma Ma 🤍🪷</h3>
+
+    <p>ဒီသီတင်းကျွတ်လေးမှာ မမအတွက် ဆုတောင်းပေးထားသမျှ ကောင်းခြင်းတွေ တကယ်ဖြစ်လာပါစေ။ မမရဲ့နေ့ရက်တိုင်းဟာ အဓိပ္ပာယ်ရှိပြီး လှပတဲ့အမှတ်တရလေးတွေနဲ့ ပြည့်နေပါစေ။</p>
+
+    <p><strong>မမအတွက် ကောင်းခြင်းတွေ အမြဲဆုတောင်းပေးနေပါတယ်။ 🤍🎆</strong></p>
+
+    <p style="text-align:center;">With lots of warm wishes. 🪷✨</p>
+  </article>
+
+  <button class="main" onclick="showPage(15)">နောက်ဆုံးစာမျက်နှာလေးဆီ 🤍</button>
+</section>
+
+<!-- PAGE 15: CLOSING -->
+<section class="page" id="p15">
+  <div class="emoji">🌙🪷🤍</div>
+  <h1>Happy Thadingyut, Ma Ma</h1>
+  <div class="card">
+    <p>မမရေ… ဒီသီတင်းကျွတ်လေးမှာ မမအတွက် ဆုတောင်းပေးထားတဲ့ ကောင်းခြင်းလေးတွေ တကယ်ဖြစ်လာပါစေနော်။</p>
+    <p>မမရဲ့နေ့ရက်တိုင်းမှာ အပြုံးလေးတွေ၊ စိတ်အေးချမ်းမှုလေးတွေနဲ့ နွေးထွေးတဲ့အမှတ်တရတွေ အမြဲရှိနေပါစေ။ 🤍</p>
+    <p>ဒီစာလေးကို အဆုံးအထိ ဖတ်ပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်။ မမအတွက် ကောင်းခြင်းတွေ အမြဲဆုတောင်းပေးနေပါတယ်။ 🪷✨</p>
+  </div>
+  <p class="small">With lots of warm wishes. 🤍</p>
+  <button class="main" onclick="burstHearts()">နှလုံးသားလေးတွေ ပို့မယ် 💗</button>
+  <button class="secondary" onclick="showPage(1)">အစကနေ ပြန်ကြည့်မယ် 🌟</button>
+</section>
+
+<div class="footer">
+  <div class="progress">
+    <div class="progress-inner" id="progressInner"></div>
+  </div>
+  <div class="nav">
+    <button id="prevBtn" onclick="previousPage()">‹ နောက်ပြန်</button>
+    <span id="pageCount">1 / 15</span>
+    <button id="nextBtn" onclick="nextPage()">ရှေ့သို့ ›</button>
+  </div>
+</div>
+
+<script>
+const pages = Array.from(document.querySelectorAll(".page"));
+let currentPage = 1;
+const totalPages = 15;
+
+function showPage(n) {
+  n = Math.max(1, Math.min(totalPages, n));
+  currentPage = n;
+
+  pages.forEach((page, index) => {
+    page.classList.toggle("active", index === n - 1);
+  });
+
+  document.getElementById("pageCount").textContent =
+    n + " / " + totalPages;
+
+  document.getElementById("progressInner").style.width =
+    (n / totalPages * 100) + "%";
+
+  document.getElementById("prevBtn").disabled = n === 1;
+  document.getElementById("nextBtn").disabled = n === totalPages;
+
+  pages[n - 1].scrollTop = 0;
+
+  /*
+    စာမျက်နှာ ၁၀ ကိုရောက်တိုင်း ဓာတ်ပြားကို စလည်စေမယ်။
+    အခြားစာမျက်နှာကိုသွားရင် ရပ်မယ်။
+  */
+  if (n === 10) {
+    manualRecordSpin = true;
+  } else {
+    manualRecordSpin = false;
+  }
+
+  updateRecordSpin();
+
+  if (n === 2 || n === 9 || n === 15) {
+    setTimeout(burstHearts, 300);
+  }
+}
+
+function nextPage() {
+  if (currentPage < totalPages) showPage(currentPage + 1);
+}
+
+function previousPage() {
+  if (currentPage > 1) showPage(currentPage - 1);
+}
+
+const wishes = [
+  "မမ အမြဲကျန်းမာပြီး ပျော်ရွှင်ပါစေ။ မမရဲ့နေ့ရက်တိုင်း အပြုံးလေးတွေနဲ့ ပြည့်နေပါစေ။ 🌷",
+  "မမ ကြိုးစားသမျှ အောင်မြင်မှုကောင်းတွေ ရရှိပြီး မမရဲ့အိပ်မက်လေးတွေ ပြည့်ဝပါစေ။ 🌟",
+  "မမရဲ့စိတ်ကလေး အမြဲအေးချမ်းပြီး ပင်ပန်းမှုတွေ လျော့နည်းပါစေ။ 🌙"
+];
+
+function starWish(index) {
+  document.getElementById("starWishText").textContent = wishes[index];
+  burstHearts();
+}
+
+function selectWish(button, message) {
+  document.querySelectorAll(".choice").forEach(btn => {
+    btn.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
+  document.getElementById("selectedWish").textContent = message;
+  burstHearts();
+}
+
+function burstHearts() {
+  const emojis = ["🤍", "💗", "✨", "🪷", "💖"];
+
+  for (let i = 0; i < 14; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.textContent =
+      emojis[Math.floor(Math.random() * emojis.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = (50 + Math.random() * 35) + "vh";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDelay = Math.random() * .8 + "s";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+}
+
+/* Vinyl record controls */
+const record = document.getElementById("record");
+let manualRecordSpin = false;
+let youtubePlayer = null;
+let playerState = -1;
+
+function setRecordSpinning(shouldSpin) {
+  record.classList.toggle("spinning", shouldSpin);
+}
+
+function updateRecordSpin() {
+  const onMusicPage = currentPage === 10;
+  const musicIsPlaying = playerState === 1;
+
+  setRecordSpinning(
+    onMusicPage && (manualRecordSpin || musicIsPlaying)
+  );
+}
+
+function toggleRecord() {
+  manualRecordSpin = !manualRecordSpin;
+  updateRecordSpin();
+}
+
+/* YouTube API callback */
+function onYouTubeIframeAPIReady() {
+  if (youtubePlayer) return;
+
+  youtubePlayer = new YT.Player("youtubePlayer", {
+    videoId: "5HZ9qeFjhYk",
+    playerVars: {
+      playsinline: 1,
+      controls: 1,
+      rel: 0,
+      enablejsapi: 1
+    },
+    events: {
+      onReady: function() {
+        updateRecordSpin();
+      },
+      onStateChange: function(event) {
+        playerState = event.data;
+
+        if (event.data === YT.PlayerState.PLAYING) {
+          manualRecordSpin = false;
+        }
+
+        updateRecordSpin();
+      },
+      onError: function() {
+        /*
+          YouTube player မဖွင့်နိုင်ရင်လည်း
+          ခလုတ်နဲ့ ဓာတ်ပြားလှည့်တာကို သုံးနိုင်မယ်။
+        */
+        updateRecordSpin();
+      }
+    }
+  });
+}
+
+/* Load YouTube API only once */
+(function loadYouTubeAPI() {
+  if (window.YT && window.YT.Player) {
+    onYouTubeIframeAPIReady();
+    return;
+  }
+
+  if (document.getElementById("youtube-api-script")) return;
+
+  const tag = document.createElement("script");
+  tag.id = "youtube-api-script";
+  tag.src = "https://www.youtube.com/iframe_api";
+  tag.async = true;
+  document.head.appendChild(tag);
+})();
+
+/* Twinkling night sky */
+const canvas = document.getElementById("sky");
+const ctx = canvas.getContext("2d");
+let starField = [];
+
+function resizeSky() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = Math.floor(window.innerWidth * dpr);
+  canvas.height = Math.floor(window.innerHeight * dpr);
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  starField = Array.from({ length: 95 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 1.6 + .3,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * .025 + .006
+  }));
+}
+
+function drawSky() {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  const time = Date.now() * .001;
+
+  starField.forEach(star => {
+    const alpha =
+      .25 + (Math.sin(time * star.speed * 30 + star.phase) + 1) * .32;
+
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,239,255," + alpha + ")";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(drawSky);
+}
+
+window.addEventListener("resize", resizeSky);
+resizeSky();
+drawSky();
+showPage(1);
+</script>
+</body>
+</html>
